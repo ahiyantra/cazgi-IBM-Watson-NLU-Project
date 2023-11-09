@@ -47,7 +47,7 @@ class App extends React.Component {
         response.json().then((data)=>{
         this.setState({sentimentOutput:data.label});
         let output = data.label;
-        let color = "white"
+        let color = "blue"
         switch(output) {
           case "positive": color = "green";break;
           case "negative": color = "red";break;
@@ -55,20 +55,22 @@ class App extends React.Component {
         }
         output = <div style={{color:color,fontSize:20}}>{output}</div>
         this.setState({sentimentOutput:output});
-      })});
+      })})
+    .catch(error => console.log(error));
   }
 
   sendForEmotionAnalysis = () => {
 
     this.setState({sentiment:false});
     let url = ".";
-    let mode = this.state.mode
-    url = url+"/" + mode + "/emotion?"+ mode + "="+document.getElementById("textinput").value;
-
+    let mode = this.state.mode;
+    url = url + "/" + mode + "/emotion?" + mode + "=" + document.getElementById("textinput").value;                                                                                                         
+    
     fetch(url).then((response)=>{
         response.json().then((data)=>{
         this.setState({sentimentOutput:<EmotionTable emotions={data}/>});
-      })});
+      })})
+    .catch(error => console.log(error));
   }
   
 

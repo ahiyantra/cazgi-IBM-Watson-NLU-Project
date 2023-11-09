@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = new express();
 
@@ -12,11 +13,11 @@ app.use(cors_app());
 /*Uncomment the following lines to loan the environment 
 variables that you set up in the .env file*/
 
-// const dotenv = require('dotenv');
-// dotenv.config();
+ const dotenv = require('dotenv');
+ dotenv.config();
 
-// const api_key = process.env.API_KEY;
-// const api_url = process.env.API_URL;
+ const api_key = process.env.API_KEY;
+ const api_url = process.env.API_URL;
 
 function getNLUInstance() {
     /*Type the code to create the NLU instance and return it.
@@ -25,6 +26,7 @@ function getNLUInstance() {
 
     const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
     const { IamAuthenticator } = require('ibm-watson/auth');
+    const { IamTokenManager } = require('ibm-watson/auth'); 
 
     const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
         version: '2021-08-01',
@@ -65,7 +67,7 @@ app.get("/",(req,res)=>{
             return res.send(analysisResults.result.keywords[0].emotion,null,2);
         })
         .catch(err => {
-            return res.send("Could not do desired operation "+err);
+            return res.send("Could not do desired operation -"+err);
         });
     });
 
@@ -92,7 +94,7 @@ app.get("/",(req,res)=>{
             return res.send(analysisResults.result.keywords[0].sentiment,null,2);
         })
         .catch(err => {
-            return res.send("Could not do desired operation "+err);
+            return res.send("Could not do desired operation -"+err);
         });
     });
 
@@ -119,7 +121,7 @@ app.get("/",(req,res)=>{
             return res.send(analysisResults.result.keywords[0].emotion,null,2);
         })
         .catch(err => {
-            return res.send("Could not do desired operation "+err);
+            return res.send("Could not do desired operation -"+err);
         });
     });
 
@@ -146,7 +148,7 @@ app.get("/",(req,res)=>{
             return res.send(analysisResults.result.keywords[0].sentiment,null,2);
         })
         .catch(err => {
-            return res.send("Could not do desired operation "+err);
+            return res.send("Could not do desired operation -"+err);
         });
     });
 

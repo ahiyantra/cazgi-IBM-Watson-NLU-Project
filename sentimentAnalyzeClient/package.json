@@ -1,6 +1,7 @@
 {
   "name": "sentimentanalyzeclient",
   "version": "0.1.0",
+  "homepage": "http://localhost:8080",
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
